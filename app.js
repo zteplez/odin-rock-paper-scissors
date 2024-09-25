@@ -1,7 +1,9 @@
 let humanScore = 0, computerScore = 0;
 
-function playRound(hChoice, cChoice) {
-    hChoice = hChoice.toLowerCase();
+function playRound() {
+    let hChoice = getHumanChoice().toLowerCase();
+    let cChoice = getComputerChoice();
+
     console.log("They are choices " + hChoice + "  " + cChoice)
 
     if (cChoice == hChoice) { console.log("draw!"); return }
@@ -36,9 +38,8 @@ function playRound(hChoice, cChoice) {
             humanScore++;
         }
     }
-    console.log(humanScore, computerScore);
+    console.log("Human -> " + humanScore + " Computer -> " + computerScore);
 }
-
 function getComputerChoice() {
     let randomChoice = Math.floor(Math.random() * 3);
 
@@ -60,10 +61,19 @@ function getHumanChoice() {
     let userInput = prompt("0-Rock, 1-Paper, 2-Scissors");
     return userInput;
 }
+function playGame(){
+    humanScore = 0;
+    computerScore = 0;
 
-let human = getHumanChoice();
-let comp = getComputerChoice();
+    for(let i = 0; i < 5; i++){
+        playRound();
+    }
+    if(humanScore > computerScore) {console.log("Winner -> Human");}
+    else if(humanScore < computerScore) {console.log("Winner -> Computer");}
+    else console.log("Draw!");
+}
 
-playRound(human, comp);
 
+
+playGame();
 
